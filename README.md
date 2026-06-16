@@ -12,6 +12,11 @@ Sobel filter implemented on RPi3 B+
 |Caches| L1{d,i} 120KiB, L2 512 KiB|
 |Case| Plastic, no fans, small heaksink on CPU|
 
+## Video Specs
+| Title | Dimens | Frame Rate | Size | Length |
+|----|----|----|----|----|
+| 1080p_blender.mp4 | 1920x1080 | 30 | 15.9MB | 2:31 |
+
 
 ## Measurements
 | OC | Desc | Video | FPS |
