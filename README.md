@@ -7,7 +7,8 @@ This implementation requires that the RBG image (**TODO** img type) be flattened
 into a single intensity value ... a grayscale value. This can be done with a few methods.
 
 - Average : $$p = \frac{R + G + B}{3}$$
-- [ITU-R B.709 Luminance](https://en.wikipedia.org/wiki/Rec._709) $$ p = 0.2126 R + 0.7152 G + 0.0722 B$$
+- [ITU-R B.709 Luminance](https://en.wikipedia.org/wiki/Rec._709) 
+    $$p = 0.2126 R + 0.7152 G + 0.0722 B$$
 
 I opt'd to use Luminance for its accepted standard. 
 
@@ -16,34 +17,27 @@ I opt'd to use Luminance for its accepted standard.
 Uses two 3x3 kernels which are convolved with the original (grayscale) image to 
 calculate approximations of the derivatives. Each kernel, one for horizontal change and one for vertical change, performs a low pass Gaussian filtering [1 2 1] as well as a discrete differentiation [+1 0 -1] on each pixel of the image.
 
-$$
+```math
 \bf{G_x} = 
 \begin{bmatrix}
 +1 & 0 & -1 \\
 +2 & 0 & -2 \\
 +1 & 0 & -1
-\end{bmatrix}
-
-=
-
+\end{bmatrix}=
 \begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}
 \begin{bmatrix} +1 & 0 & -1 \end{bmatrix}
+```
 
-$$
-
-$$
+```math
 \bf{G_y} = 
 \begin{bmatrix}
 +1 & +2 & +1 \\
 0 & 0 & 0 \\
 -1 & -2 & -1
-\end{bmatrix}
-
-=
-
+\end{bmatrix}=
 \begin{bmatrix} +1 \\ 0 \\ -1 \end{bmatrix}
 \begin{bmatrix} 1 & 2 & 1 \end{bmatrix}
-$$
+```
 
 The results of the operator produce a cheap edge detector where :
 - Magnitude : $$\bf{G} = \sqrt{\bf{G_x}^2 + \bf{G_y} ^ 2}$$
