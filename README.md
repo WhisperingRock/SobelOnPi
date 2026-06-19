@@ -229,4 +229,19 @@ g++ -o /home/admin/test_opencv /home/admin/test_opencv.cpp \
 ./test_opencv
 ```
 
-7. There, that wasn't so bad !
+#### Back on the UNIX machine
+
+Backup the Pi's image on the ssd for easy recovery.
+
+1. Check which `dev/` the ssd was binded to
+```
+sudo fdisk -1
+
+# or use a graphical tool
+```
+
+2. Copy the memory from the ssd. (mine was on `/dev/sda` )
+```
+sudo dd bs=4M if=/dev/sda of=/home/username/MyImage.img status=progress
+```
+
